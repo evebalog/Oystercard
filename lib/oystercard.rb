@@ -8,6 +8,7 @@ class Oystercard
   attr_reader :balance, :entry_station, :journeys, :exit_station
 
   def initialize(set_balance = DEFAULT_BALANCE)
+    raise "Cannot set balance over £#{MAXIMUM_BALANCE}" if set_balance > MAXIMUM_BALANCE
     @balance = set_balance
     @journeys = []
   end

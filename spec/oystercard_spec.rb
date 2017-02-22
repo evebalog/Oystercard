@@ -10,6 +10,11 @@ describe Oystercard do
     it 'has an empty list of journeys by default' do
       expect(subject.journeys).to be_empty
     end
+
+    it 'cannot set balance over maximum balance for new card' do
+      maximum_balance = Oystercard::MAXIMUM_BALANCE
+      expect{ Oystercard.new(maximum_balance + 1)}.to raise_error "Cannot set balance over £#{maximum_balance}"
+    end
   end
 
   describe '#top_up' do
